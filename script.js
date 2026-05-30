@@ -36,6 +36,6 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 
-document.querySelectorAll('.card, .timeline-item, .pub-item, .credential-group').forEach(el => {
+document.querySelectorAll('.card, .timeline-item, .pub-item, .credential-group, .speaking-gallery-item').forEach(el => {
   observer.observe(el);
 });
