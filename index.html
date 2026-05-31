@@ -409,8 +409,13 @@
               <input type="email" id="email" name="email" required placeholder="you@example.com">
             </div>
           </div>
-          <div class="form-group">
-            <label for="subject">Subject</label>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone <span style="opacity:0.5">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="+61 4XX XXX XXX">
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
             <select id="subject" name="subject" required>
               <option value="" disabled selected>What is this regarding?</option>
               <option value="Speaking & Keynotes">Speaking &amp; Keynotes</option>
@@ -420,6 +425,7 @@
               <option value="Consultancy & Mentorship">Consultancy &amp; Mentorship</option>
               <option value="Other">Other</option>
             </select>
+            </div>
           </div>
           <div class="form-group">
             <label for="message">Message</label>

@@ -31,13 +31,55 @@ const carousel = document.getElementById('speaking-carousel');
 if (carousel) {
   const prevBtn = carousel.parentElement.querySelector('.carousel-btn-prev');
   const nextBtn = carousel.parentElement.querySelector('.carousel-btn-next');
-  const scrollAmount = () => carousel.querySelector('.carousel-item')?.offsetWidth + 20 || 400;
+  const scrollAmount = () => carousel.querySelector('.carousel-item')?.offsetWidth + 24 || 400;
 
   prevBtn?.addEventListener('click', () => {
     carousel.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
   });
   nextBtn?.addEventListener('click', () => {
     carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+  });
+}
+
+// Contact form — AJAX submit with custom success state
+const form = document.getElementById('contact-form');
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('.btn-submit');
+    const originalText = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    try {
+      const resp = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      const wrap = form.closest('.contact-form-wrap');
+      if (resp.ok) {
+        wrap.innerHTML = `
+          <div class="form-success">
+            <div class="form-success-icon">&#10003;</div>
+            <h3 class="form-heading">Message Sent</h3>
+            <p class="form-success-text">
+              Thank you for reaching out. My team will review your message and
+              respond within 2–3 business days.
+            </p>
+            <a href="#hero" class="btn btn-outline" style="margin-top:24px; color:#fff; border-color:rgba(255,255,255,0.3);">Back to Top</a>
+          </div>`;
+      } else {
+        btn.textContent = 'Error — Try Again';
+        btn.disabled = false;
+        setTimeout(() => { btn.textContent = originalText; }, 3000);
+      }
+    } catch {
+      btn.textContent = 'Error — Try Again';
+      btn.disabled = false;
+      setTimeout(() => { btn.textContent = originalText; }, 3000);
+    }
   });
 }
 

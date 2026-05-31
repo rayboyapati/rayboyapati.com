@@ -861,6 +861,33 @@ a:hover { color: var(--color-accent-hover); }
   color: rgba(255,255,255,0.35);
 }
 
+/* ── Form Success State ── */
+.form-success {
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.form-success-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+}
+
+.form-success-text {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
 /* ── Social Links ── */
 .social-links {
   display: flex;
