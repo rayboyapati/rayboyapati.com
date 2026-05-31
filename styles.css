@@ -484,7 +484,11 @@ a:hover { color: var(--color-accent-hover); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center 25%;
+}
+
+.photo-break.photo-break-portrait img {
+  object-position: center 15%;
 }
 
 .photo-break-overlay {
@@ -596,7 +600,12 @@ a:hover { color: var(--color-accent-hover); }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   transition: transform 0.5s;
+}
+
+.carousel-item-img.portrait img {
+  object-position: center 15%;
 }
 
 .carousel-item:hover img {
