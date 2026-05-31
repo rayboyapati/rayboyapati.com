@@ -26,6 +26,21 @@ links.querySelectorAll('a').forEach(a => {
   });
 });
 
+// Speaking carousel
+const carousel = document.getElementById('speaking-carousel');
+if (carousel) {
+  const prevBtn = carousel.parentElement.querySelector('.carousel-btn-prev');
+  const nextBtn = carousel.parentElement.querySelector('.carousel-btn-next');
+  const scrollAmount = () => carousel.querySelector('.carousel-item')?.offsetWidth + 20 || 400;
+
+  prevBtn?.addEventListener('click', () => {
+    carousel.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+  });
+  nextBtn?.addEventListener('click', () => {
+    carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+  });
+}
+
 // Scroll-in animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -36,6 +51,6 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 
-document.querySelectorAll('.card, .timeline-item, .pub-item, .credential-group, .speaking-gallery-item').forEach(el => {
+document.querySelectorAll('.card, .timeline-item, .pub-item, .credential-group, .carousel-item').forEach(el => {
   observer.observe(el);
 });
