@@ -18,8 +18,8 @@
   --color-accent-light: #faf5eb;
   --color-gold: #c9993a;
   --color-border: #ddd;
-  --font-heading: 'Playfair Display', Georgia, serif;
-  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-heading: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
   --max-width: 1180px;
   --nav-height: 72px;
 }
@@ -212,12 +212,12 @@ a:hover { color: var(--color-accent-hover); }
 
 .hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(3.5rem, 8vw, 6rem);
-  font-weight: 900;
+  font-size: clamp(3.5rem, 8vw, 5.5rem);
+  font-weight: 400;
   color: #fff;
-  line-height: 1.0;
+  line-height: 1.05;
   margin-bottom: 32px;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.01em;
 }
 
 .hero-subtitle {
@@ -320,12 +320,12 @@ a:hover { color: var(--color-accent-hover); }
 
 .section-title {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 5.5vw, 3.8rem);
-  font-weight: 900;
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  font-weight: 400;
   color: var(--color-text);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.01em;
   margin-bottom: 24px;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 .section-desc {
@@ -341,59 +341,105 @@ a:hover { color: var(--color-accent-hover); }
   margin-top: 60px;
 }
 
-/* ── About ── */
-.about-grid {
+/* ── Logo Bar ── */
+.logo-bar {
+  width: 100%;
+  overflow: hidden;
+  padding: 32px 0 0;
+  position: relative;
+  z-index: 1;
+}
+
+.logo-bar::before,
+.logo-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logo-bar::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-bg-hero), transparent);
+}
+
+.logo-bar::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-bg-hero), transparent);
+}
+
+.logo-bar-track {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  animation: scroll-logos 30s linear infinite;
+  width: max-content;
+}
+
+.logo-bar-track img {
+  height: 28px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.4;
+  transition: opacity 0.3s;
+}
+
+.logo-bar-track img:hover {
+  opacity: 0.8;
+}
+
+@keyframes scroll-logos {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── About Card ── */
+.about-card {
   display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 80px;
-  align-items: start;
+  grid-template-columns: 320px 1fr;
+  background: var(--color-bg-alt);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+}
+
+.about-card-photo {
+  position: relative;
 }
 
 .about-photo-img {
   width: 100%;
-  aspect-ratio: 3/4;
+  height: 100%;
   object-fit: cover;
   object-position: top center;
-  border-radius: 16px;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.15);
 }
 
-.about-text p {
-  margin-bottom: 24px;
-  font-size: 1.1rem;
+.about-card-content {
+  padding: 52px 56px;
+}
+
+.about-card-content .section-tag {
+  text-align: left;
+}
+
+.about-card-content .section-title {
+  text-align: left;
+  margin-bottom: 28px;
+}
+
+.about-card-content p {
+  margin-bottom: 20px;
+  font-size: 1.05rem;
   color: var(--color-text-light);
   line-height: 1.85;
 }
 
-.about-text strong {
+.about-card-content strong {
   color: var(--color-text);
   font-weight: 700;
-}
-
-.about-stats {
-  display: flex;
-  gap: 52px;
-  margin-top: 44px;
-  padding-top: 40px;
-  border-top: 3px solid var(--color-text);
-}
-
-.stat-number {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: 2.8rem;
-  font-weight: 900;
-  color: var(--color-text);
-  line-height: 1.1;
-}
-
-.stat-label {
-  font-size: 0.8rem;
-  color: var(--color-text-light);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-top: 4px;
 }
 
 /* ── Cards ── */
@@ -922,13 +968,14 @@ a:hover { color: var(--color-accent-hover); }
 @media (max-width: 900px) {
   .cards-grid { grid-template-columns: 1fr; }
   .credentials-grid { grid-template-columns: 1fr; }
-  .about-grid {
+  .about-card {
     grid-template-columns: 1fr;
-    gap: 48px;
   }
-  .about-photo {
-    max-width: 280px;
-    margin: 0 auto;
+  .about-card-photo {
+    max-height: 360px;
+  }
+  .about-card-content {
+    padding: 32px 28px;
   }
   .carousel-item { flex: 0 0 70%; min-width: 240px; }
   .carousel-btn { display: none; }
